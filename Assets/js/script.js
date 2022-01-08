@@ -99,13 +99,15 @@ var useNumbers;
 var useSpecial;
 var passwordLength;
 
+// A function to generate a random number to use later in the code
 function randomNumberGenerator(maxNum) {
   return Math.floor(Math.random() * maxNum);
 }
 
+//Main section of Code
 function generatePassword() {
   debugger;
-  // where all the options selected move into a seperate array
+  // Empty Variables for all the characters selected
   var finalPasswordOptions = [];
   var finalPassword = "";
 
@@ -113,10 +115,10 @@ function generatePassword() {
     "How long do you want your password to be? (A minimum of 8 characters and a maximum of 128)"
   );
 
-  //Changing the prompt variable return to number instead of string
+  //Changing the passwordLength prompt return to : number instead of : string
   var passwordLengthInt = parseInt(passwordLength);
 
-  // Setting a minimum and maximum required for the criteria
+  // Setting a minimum and maximum number input required for the user to proceed
   while (passwordLengthInt > 128 || passwordLengthInt < 8) {
     passwordLengthInt = alert(
       "The password needs to be between 8 & 128 characters! Try again with another number!"
@@ -124,18 +126,21 @@ function generatePassword() {
     return;
   }
 
-  // Options for your password
+  // Confirm Popups that display options for the user to choose to have implemented into their password
   useUpperCase = confirm("Would you like to use Upper Case characters?");
   useLowerCase = confirm("Would you like to use Lower Case Characters?");
   useNumbers = confirm("Would you like to use Numbers?");
   useSpecial = confirm("Would you like to use Special Characters?");
 
-  //User had to select one of the options or get an alert popup
+  //The user has to select one of the options or will get an alert popup
   if (!useUpperCase && !useLowerCase && !useSpecial && !useNumbers) {
     alert("Please pick at least one of the options");
     return null;
   }
-  //If selected, I want to push these arrays into the final options array
+  //If selected, to push these arrays into the 'final options' array
+  //While using a 'randomNumberGenerator' function to pluck a single digit or letter
+  //This is to ensure that, despite being random, we have atleast 1 of each character
+  //from the selected criteria generatred in the password
   if (useUpperCase === true) {
     finalPasswordOptions = finalPasswordOptions.concat(upperCaseCharacters);
     var randomNumber = randomNumberGenerator(upperCaseCharacters.length);
@@ -164,14 +169,16 @@ function generatePassword() {
     finalPassword += specialCharacters[randomNumber];
   }
 
-  //create a for loop to choose password characters
+  //Create a for loop to choose password characters
+  // I am using finalPassword.length instead of 0 because the necessary characters added from above
+  //already move the value of i from 0. Using this allows the user to recieve the the correct length
   for (var i = finalPassword.length; i < passwordLengthInt; i++) {
     finalPassword +=
       finalPasswordOptions[
         Math.floor(Math.random() * finalPasswordOptions.length)
       ];
   }
-
+  // The return of the entire function will be the value of finalPassword
   return finalPassword;
 }
 
@@ -182,5 +189,6 @@ function writePassword() {
   passwordText.value = password;
 }
 
-// Add event listener to generate button
+// Add event listener to generate button so that when the code is run when the user clicks the
+//'generate password' button
 generateBtn.addEventListener("click", writePassword);
