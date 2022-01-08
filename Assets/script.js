@@ -1,37 +1,154 @@
-// Assignment Code
+// A variable to reference the button id
 var generateBtn = document.querySelector("#generate");
 
-// Write password to the #password input
-
 function generatePassword() {
-  //create all our variables to pluck characters from
+  // Variable Arrays which contain the contents for the password generator to select from
+  var nums = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+  var specialCharacters = [
+    " ",
+    "!",
+    "#",
+    "%",
+    "&",
+    "'",
+    "(",
+    ")",
+    ",",
+    "*",
+    "+",
+    ",",
+    "-",
+    ".",
+    "/",
+    ":",
+    ";",
+    "<",
+    "=",
+    ">",
+    "?",
+    "@",
+    "[",
+    "]",
+    "^",
+    "_",
+    "`",
+    "{",
+    "|",
+    "}",
+    "~",
+  ];
+  var upperCaseCharacters = [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E",
+    "F",
+    "G",
+    "H",
+    "I",
+    "J",
+    "K",
+    "L",
+    "M",
+    "N",
+    "O",
+    "P",
+    "Q",
+    "R",
+    "S",
+    "T",
+    "U",
+    "V",
+    "W",
+    "X",
+    "Y",
+    "Z",
+  ];
+  var lowerCaseCharacters = [
+    "a",
+    "b",
+    "c",
+    "d",
+    "e",
+    "f",
+    "g",
+    "h",
+    "i",
+    "j",
+    "k",
+    "l",
+    "m",
+    "n",
+    "o",
+    "p",
+    "q",
+    "r",
+    "s",
+    "t",
+    "u",
+    "v",
+    "w",
+    "x",
+    "y",
+    "z",
+  ];
 
-  var nums = ["1", "2", "3", "4", "5"];
-
+  // where all the options selected move into a seperate array
   var finalPasswordOptionsArray = [];
-  // Then make a loop to randomly select ^ to finalPw
+
+  // Then create a loop that loops from selected characters in finalPassOtioArray to finalpw
+  //loop 0-length requested each time add a random character from final options to a string
   var finalPw = "";
+
+  // Criteria questions for the user to choose from
   var passwordLength = prompt(
-    "How many characters would you like your password to contain?"
+    "How long do you want your password to be? (A minimum of 8 characters and a maximum of 128)"
   );
-  var passwordLengthint = parseInt(passwordLength);
-  var useUpperCase = confirm("Would you like to use Upper Case characters?");
-  var useNumbers = confirm("Would you like to use Numbers ?");
+  //Changing the prompt variable return to number instead of string
+  var passwordLengthInt = parseInt(passwordLength);
 
-  //we need to add whatever they have said yes too to an array to generate final pw from
-
-  if (useNumbers === true) {
-    //add to final options array & find out how to take these selections to
-    //finalPasswordOptionsArray & do this for each of password options
+  // Setting a minimum and maximum required for the criteria
+  while (passwordLengthInt > 128) {
+    alert("The amount entered exceeds 128 characters!");
+    return;
   }
+  while (passwordLengthInt < 8) {
+    alert(
+      "The amount entered is below the required character amount expected!"
+    );
+    return;
+  }
+
+  var useUpperCase = confirm("Would you like to use Upper Case characters?");
+  var useLowerCase = confirm("Would you like to use Lower Case Characters?");
+  var useNumbers = confirm("Would you like to use Numbers?");
+  var useSpecial = confirm("Would you like to use Special Characters?");
+
+  // Adding the selected criteria into the password generator
+
   if (useUpperCase === true) {
     //add to final options array
   }
 
-  //loop 0-length requested each time add a random character from final options to a string
+  if (useLowerCase === true) {
+    //add to final options array
+  }
+
+  if (useNumbers === true) {
+    // if use numbers is true
+    // I want to put the Nums array into finalpassoptions
+  }
+
+  if (useSpecial === true) {
+    //add to final options array
+  }
+
+  //Stating the result of the function after running it
   return finalPw;
 }
 
+//This function displays the output of the return in generatePassword into the html
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
