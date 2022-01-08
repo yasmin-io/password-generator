@@ -160,12 +160,14 @@ function generatePassword() {
   }
 
   //create a for loop to choose password characters
-  for (var i = finalPasswordOptions.length; i < passwordLengthInt; i++) {
+  for (var i = finalPassword.length; i < passwordLengthInt; i++) {
     finalPassword +=
       finalPasswordOptions[
         Math.floor(Math.random() * finalPasswordOptions.length)
       ];
   }
+
+  return finalPassword;
 }
 
 //This function displays the output of the return in generatePassword into the html
