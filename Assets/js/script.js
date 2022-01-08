@@ -130,6 +130,11 @@ function generatePassword() {
   useNumbers = confirm("Would you like to use Numbers?");
   useSpecial = confirm("Would you like to use Special Characters?");
 
+  //User had to select one of the options or get an alert popup
+  if (!useUpperCase && !useLowerCase && !useSpecial && !useNumbers) {
+    alert("Please pick at least one of the options");
+    return null;
+  }
   //If selected, I want to push these arrays into the final options array
   if (useUpperCase === true) {
     finalPasswordOptions = finalPasswordOptions.concat(upperCaseCharacters);
