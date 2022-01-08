@@ -129,19 +129,35 @@ function generatePassword() {
 
   if (useUpperCase === true) {
     //add to final options array
+    finalPasswordOptionsArray.push(upperCaseCharacters);
   }
 
   if (useLowerCase === true) {
     //add to final options array
+    finalPasswordOptionsArray.push(lowerCaseCharacters);
   }
 
   if (useNumbers === true) {
     // if use numbers is true
     // I want to put the Nums array into finalpassoptions
+    finalPasswordOptionsArray.push(nums);
   }
 
   if (useSpecial === true) {
     //add to final options array
+    finalPasswordOptionsArray.push(specialCharacters);
+  }
+
+  //create a for loop to choose password characters
+  for (var i = 0; i <= passwordLengthInt; i++) {
+    finalPw =
+      finalPw +
+      finalPasswordOptionsArray.values(
+        Math.floor(
+          Math.random() *
+            Math.floor(finalPasswordOptionsArray.passwordLengthInt - 1)
+        )
+      );
   }
 
   //Stating the result of the function after running it
@@ -158,3 +174,5 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
+
+console.log("hello!");
